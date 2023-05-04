@@ -53,11 +53,11 @@
     "web-vitals": "^0.2.2"
   },
   "scripts": {
-    "start": "craco start",
-    "start-prod": "env-cmd -f .env.prod craco start",
-    "build": "craco build",
+    "start": "npm start",
+    "start-prod": "env-cmd -f .env.prod npm start",
+    "build": "npm build",
     "build-prod": "env-cmd -f .env.prod craco build",
-    "test": "craco test",
+    "test": "npm test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json}\"",
