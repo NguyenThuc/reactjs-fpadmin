@@ -1,0 +1,298 @@
+Index: .env
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.env b/.env
+--- a/.env	(revision 2e14c7726b0f1e6ede397af5efe30dfa05bef524)
++++ b/.env	(date 1671769058293)
+@@ -1,2 +1,2 @@
+ # REACT_APP_URL = "https://api.routor.biz"
+-REACT_APP_URL = "http://3.115.77.28"
++REACT_APP_URL = "http://3.18.200.50"
+Index: src/components/CreateBaseRoute/components/RouteMap/index.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/CreateBaseRoute/components/RouteMap/index.tsx b/src/components/CreateBaseRoute/components/RouteMap/index.tsx
+--- a/src/components/CreateBaseRoute/components/RouteMap/index.tsx	(revision 2e14c7726b0f1e6ede397af5efe30dfa05bef524)
++++ b/src/components/CreateBaseRoute/components/RouteMap/index.tsx	(date 1671942579281)
+@@ -1,12 +1,12 @@
+ import React, { useState, useEffect, useMemo } from 'react';
+ import { GOOGLE_MAPS_API_TOKEN } from '../../../../constants/mapbox';
+-import { Container, VStack, Button, Box } from '@chakra-ui/react';
++import { Container, VStack, Button, Box,Tabs,TabList,Tab,TabPanel,TabPanels } from '@chakra-ui/react';
+ import './styles.css';
+ import { IBaseRoute } from '../../../../models/baseRoute';
+ import { ICollectionPoint } from '../../../../models/collectionPoint';
+ import { ICourse } from '../../../../models/course';
+ import CustomMarker from '../Marker';
+-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
++import { Map, Marker, GoogleApiWrapper  } from 'google-maps-react';
+ import NewMarkerIcon from '../../../../assets/marker-gray.png';
+ import SearchMarkerIcon from '../../../../assets/marker-red.png';
+ import { MapSearchbar } from '../../../MapSearchBar';
+@@ -14,7 +14,6 @@
+ import { CollectionPointListContainer } from '../CollectionPointListContainer';
+ import { UndoDeletedCourse } from '../UndoDeletedCourse';
+ import { EditCourseNameModal } from '../EditCourseNameModal';
+-
+ interface RouteMapProps {
+   baseRoute: IBaseRoute;
+   tempMarker: any;
+@@ -148,6 +147,9 @@
+     });
+   };
+ 
++  // @ts-ignore
++  // @ts-ignore
++  // @ts-ignore
+   return (
+     <Container
+       position='relative'
+@@ -170,25 +172,8 @@
+           setSearchedMarker(location);
+         }}
+       />
+-      <CourseListContainer
+-        courses={courses}
+-        onDeleteCourse={(course) => {
+-          onDeleteCourse?.(course);
+-        }}
+-        onSelectCourse={onSelectCourse}
+-        onAddNewCourse={onAddNewCourse}
+-        onEditCourse={onEditCourse}
+-      />
+-      <CollectionPointListContainer
+-        cps={cps}
+-        onDeleteCps={onDeleteCps}
+-        onEditCps={onEditCps}
+-        onDragCpsEnd={onDragCpsEnd}
+-        viewport={viewport}
+-        setViewport={setViewport}
+-        highlightMark={highlightMark}
+-        setHighlightMark={setHighlightMark}
+-      />
++
++
+       <EditCourseNameModal
+         isVisible={!!editingCourse}
+         setVisible={() => {
+@@ -234,10 +219,17 @@
+         initialCenter={{ lat: viewport.latitude, lng: viewport.longitude }}
+         center={{ lat: viewport.latitude, lng: viewport.longitude }}
+         zoom={viewport.zoom}
++        mapTypeControl={true}
++        mapTypeControlOptions = {{
++          style: 2,
++          mapTypeIds: ["roadmap","satellite"],
++      }}
+       >
++
+         {markersView}
+         {searchedMarkerView}
+         {tempMarker && google && (
++
+           <Marker
+             {...props}
+             position={{ lat: tempMarker.latitude, lng: tempMarker.longitude }}
+@@ -254,6 +246,39 @@
+           />
+         )}
+       </Map>
++
++      <Tabs w='300px' height='100%'  position='absolute' right = '0' background='#fff'>
++        <TabList>
++          <Tab>  One  </Tab>
++          <Tab>Two</Tab>
++        </TabList>
++        <TabPanels>
++          <TabPanel>
++            <p>  <CourseListContainer
++                courses={courses}
++                onDeleteCourse={(course) => {
++                  onDeleteCourse?.(course);
++                }}
++                onSelectCourse={onSelectCourse}
++                onAddNewCourse={onAddNewCourse}
++                onEditCourse={onEditCourse}
++            /></p>
++          </TabPanel>
++          <TabPanel>
++            <p> <CollectionPointListContainer
++                cps={cps}
++                onDeleteCps={onDeleteCps}
++                onEditCps={onEditCps}
++                onDragCpsEnd={onDragCpsEnd}
++                viewport={viewport}
++                setViewport={setViewport}
++                highlightMark={highlightMark}
++                setHighlightMark={setHighlightMark}
++            /></p>
++          </TabPanel>
++
++        </TabPanels>
++      </Tabs>
+       <Box
+         position='absolute'
+         // p={2}
+Index: src/components/CreateBaseRoute/components/CourseItem.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/CreateBaseRoute/components/CourseItem.tsx b/src/components/CreateBaseRoute/components/CourseItem.tsx
+--- a/src/components/CreateBaseRoute/components/CourseItem.tsx	(revision 2e14c7726b0f1e6ede397af5efe30dfa05bef524)
++++ b/src/components/CreateBaseRoute/components/CourseItem.tsx	(date 1672023470327)
+@@ -47,28 +47,56 @@
+         </VStack>
+ 
+         <Flex p={1}>
++
+           <Button
++            border='1px'
+             mr={2}
+-            colorScheme='blue'
+-            size='xs'
++            //colorScheme='gray'
++            borderColor='#E3E8F0'
++            borderRadius='20px'
++            lineHeight='4'
++            variant='outline'
++            size='sm'
++            _active={{
++              borderColor: '#E3E8F0',
++            }}
++            _hover={{
++              borderColor: '#E3E8F0',
++            }}
++            _focus={{
++              borderColor: '#E3E8F0',
++            }}
+             onClick={(e) => {
+               e.stopPropagation();
+               onEditClick();
+             }}
+           >
+-            <AiFillEdit />
++       qqwqq
+           </Button>
+           {!course.checked && total >= 2 && (
+             <Button
++              border='1px'
+               mr={2}
+               colorScheme='red'
+-              size='xs'
++              borderColor='#E3E8F0'
++              borderRadius='20px'
++              lineHeight='4'
++              variant='outline'
++              size='sm'
++              _active={{
++                borderColor: 'red',
++              }}
++              _hover={{
++                borderColor: 'red',
++              }}
++              _focus={{
++                borderColor: 'red',
++              }}
+               onClick={(e) => {
+                 e.stopPropagation();
+                 onDeleteClick();
+               }}
+             >
+-              <MdDeleteForever />
+             </Button>
+           )}
+ 
+Index: src/components/CreateBaseRoute/components/CourseListContainer.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/CreateBaseRoute/components/CourseListContainer.tsx b/src/components/CreateBaseRoute/components/CourseListContainer.tsx
+--- a/src/components/CreateBaseRoute/components/CourseListContainer.tsx	(revision 2e14c7726b0f1e6ede397af5efe30dfa05bef524)
++++ b/src/components/CreateBaseRoute/components/CourseListContainer.tsx	(date 1671769058232)
+@@ -14,15 +14,14 @@
+ 
+ const styles = {
+   container: {
+-    position: 'absolute',
+     width: 300,
+-    height: '38vh',
++    // height: '38vh',
+     background: '#fff',
+     borderRadius: 8,
+     top: 90,
+     left: 10,
+     zIndex: 2,
+-    boxShadow: 'rgb(0 0 0 / 30%) 0px 1px 4px -1px',
++    // boxShadow: 'rgb(0 0 0 / 30%) 0px 1px 4px -1px',
+     overflowY: 'auto',
+     padding: 8,
+     boxSizing: 'border-box',
+Index: .env.development
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.env.development b/.env.development
+--- a/.env.development	(revision 2e14c7726b0f1e6ede397af5efe30dfa05bef524)
++++ b/.env.development	(date 1671769058303)
+@@ -1,1 +1,1 @@
+-REACT_APP_URL = "http://3.115.77.28"
+\ No newline at end of file
++REACT_APP_URL = "http://3.18.200.50"
+Index: src/components/CreateBaseRoute/components/CollectionPointListContainer.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/CreateBaseRoute/components/CollectionPointListContainer.tsx b/src/components/CreateBaseRoute/components/CollectionPointListContainer.tsx
+--- a/src/components/CreateBaseRoute/components/CollectionPointListContainer.tsx	(revision 2e14c7726b0f1e6ede397af5efe30dfa05bef524)
++++ b/src/components/CreateBaseRoute/components/CollectionPointListContainer.tsx	(date 1671769058207)
+@@ -15,15 +15,15 @@
+ 
+ const styles = {
+   container: {
+-    position: 'absolute',
++  /*  position: 'absolute',*/
+     width: 300,
+-    height: '38vh',
++    // height: '38vh',
+     background: '#fff',
+     borderRadius: 8,
+     top: 'calc(40vh + 85px)',
+     left: 10,
+     zIndex: 2,
+-    boxShadow: 'rgb(0 0 0 / 30%) 0px 1px 4px -1px',
++    // boxShadow: 'rgb(0 0 0 / 30%) 0px 1px 4px -1px',
+     overflowY: 'auto',
+     padding: 8,
+     boxSizing: 'border-box',
+Index: src/App.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/App.tsx b/src/App.tsx
+--- a/src/App.tsx	(revision 2e14c7726b0f1e6ede397af5efe30dfa05bef524)
++++ b/src/App.tsx	(date 1671769058275)
+@@ -98,6 +98,7 @@
+     checkLogin();
+   }, []);
+ 
++  console.log(user);
+   const mainApp = useMemo(() => {
+     if (!user)
+       return (
+@@ -210,7 +211,6 @@
+             <Header user={user} />
+             <ContentContainer>
+               <Banner />
+-
+               <Grid flex={1} p={3} padding='0px 0px'>
+                 {mainApp}
+               </Grid>

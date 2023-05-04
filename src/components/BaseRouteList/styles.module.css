@@ -1,0 +1,46 @@
+.baseRoute_searchBar {
+    max-width: 428px;
+    width: 100%;
+    background: #F5F5F5;
+    border: 1px solid #C6D5EB;
+    padding: 0px 16px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.baseRoute_searchBar>input {
+    width: 100%;
+    outline: unset;
+    font-size: 14px;
+    height: 40px;
+    color: #333;
+    background: transparent;
+}
+
+.baseRoute-table-wrapper {
+    background-color: white;
+    padding: 40px 48px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.baseRoute-table-wrapper * {
+    border-color: #E4E4E4 !important;
+}
+
+.baseRoute-table-wrapper td {
+    padding: 20.5px 16px;
+}
+
+.baseRoute_header svg {
+    width: 32px;
+    height: 32px;
+}
+
+.baseRoute_header svg>* {
+    color: #2E5FA3;
+}

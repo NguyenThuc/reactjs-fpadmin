@@ -1,0 +1,15 @@
+.collection_point_button:hover {
+    opacity: 0.8;
+}
+
+.map_option_button:hover {
+    opacity: 0.8;
+}
+
+.opacity_button_hover:hover {
+    opacity: 0.8;
+}
+
+.cps_list-container::-webkit-scrollbar {
+    display: none;
+}

@@ -1,0 +1,111 @@
+{
+  "name": "hirou-admin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@chakra-ui/react": "^1.0.0",
+    "@craco/craco": "^6.2.0",
+    "@emotion/css": "^11.10.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@testing-library/jest-dom": "^5.9.0",
+    "@testing-library/react": "^10.2.1",
+    "@testing-library/user-event": "^12.0.2",
+    "@types/jest": "^25.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-animations": "^1.0.0",
+    "@types/react-beautiful-dnd": "^13.1.0",
+    "@types/react-datepicker": "^4.2.1",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.1.8",
+    "axios": "^0.21.1",
+    "bluebird": "^3.7.2",
+    "env-cmd": "^10.1.0",
+    "formik": "^2.2.9",
+    "framer-motion": "^4.0.0",
+    "google-maps-react": "^2.0.6",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.debounce": "^4.0.8",
+    "mapbox-gl": "^2.3.1",
+    "moment": "^2.29.1",
+    "rc-menu": "^9.8.1",
+    "react": "^17.0.2",
+    "react-animations": "^1.0.0",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-countdown": "^2.3.2",
+    "react-csv": "^2.2.2",
+    "react-datepicker": "^4.6.0",
+    "react-dom": "^17.0.2",
+    "react-icons": "^3.0.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-map-gl": "^6.1.16",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.1",
+    "react-scripts": "4.0.3",
+    "react-select": "^4.3.1",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
+    "typescript": "^3.9.5",
+    "universal-cookie": "^4.0.4",
+    "web-vitals": "^0.2.2"
+  },
+  "scripts": {
+    "start": "craco start",
+    "start-prod": "env-cmd -f .env.prod craco start",
+    "build": "craco build",
+    "build-prod": "env-cmd -f .env.prod craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json}\"",
+    "lint": "eslint --fix"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.36",
+    "@types/lodash.debounce": "^4.0.7",
+    "@types/react-copy-to-clipboard": "^5.0.4",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^5.7.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "gh-pages": "^3.2.3",
+    "husky": "^7.0.4",
+    "moment-timezone": "^0.5.34",
+    "prettier": "^2.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+.sidebar ::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.sidebar ::-webkit-scrollbar-track {
+  background:transparent; 
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+ 
+/* Handle */
+.sidebar ::-webkit-scrollbar-thumb {
+  background: grey; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.sidebar ::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.menuContainer {
+  cursor: pointer;
+}
+
+.menuContainer :global(.rc-menu-submenu-title) {
+  background: #2E5FA3 !important;
+}
+
+.menuContainer :global(.rc-menu-item-selected) {
+  background: #275089;
+  color: #C6D5EB;
+}
+
+.menuContainer :global(.rc-menu-item-active:not(.rc-menu-item-selected)) {
+  background: unset !important;
+}
+
+.menuContainer :global(.rc-menu-submenu > .rc-menu) {
+  background: #2E5FA3;
+  color: #fff;
+}
+
+.menuContainer :global(.rc-menu-item), :global(.rc-menu-submenu-title) {
+  padding-left: 18px !important ;
+}
+
+.menuContainer .menuSubMenu li {
+  padding-left: 30px !important;
+}
+
+.menuItem {
+  height: 53px;
+}
