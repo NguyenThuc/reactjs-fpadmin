@@ -61,12 +61,7 @@ const Login = () => {
           width='100%'
           flexDirection='column'
         >
-          <NewLogo
-            height='33px'
-            width='189px'
-            objectFit='contain'
-            pointerEvents='none'
-          />
+
           <Text fontSize='16px' color='#fff' marginTop='16px'>
             ログイン
           </Text>
